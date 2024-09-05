@@ -1,0 +1,20 @@
+{
+    "name": "AceLand.PlayerLoopHack.Editor",
+    "rootNamespace": "AceLand.PlayerLoopHack",
+    "references": [
+        "GUID:0b6e3ff925df76b408774ed4b623807b",
+        "GUID:9811992f43a01034cbf814ec6fbeeb44",
+        "GUID:f6e29fd4e9e98494f91cfd818cc81d32"
+    ],
+    "includePlatforms": [
+        "Editor"
+    ],
+    "excludePlatforms": [],
+    "allowUnsafeCode": true,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}
