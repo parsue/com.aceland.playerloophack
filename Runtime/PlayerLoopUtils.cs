@@ -100,7 +100,8 @@ namespace AceLand.PlayerLoopHack
             if (loop.type != typeof(T)) return HandleSubSystemLoop<T>(ref loop, systemToInsert, index);
             var playerLoopSystemList = new List<PlayerLoopSystem>();
             if (loop.subSystemList != null) playerLoopSystemList.AddRange((loop.subSystemList));
-            playerLoopSystemList.Insert(index, systemToInsert);
+            if (index < 0) playerLoopSystemList.Add(systemToInsert);
+            else playerLoopSystemList.Insert(index, systemToInsert);
             loop.subSystemList = playerLoopSystemList.ToArray();
             return true;
         }
