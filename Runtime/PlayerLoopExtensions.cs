@@ -12,18 +12,6 @@ namespace AceLand.PlayerLoopHack
             return PlayerLoopUtils.CreatePlayerLoopSystem(system);
         }
 
-        public static bool InsertSystem<T>(in this PlayerLoopSystem system, int index = -1)
-            where T : unmanaged
-        {
-            return PlayerLoopUtils.InsertSystem<T>(in system, index);
-        }
-
-        public static void RemoveSystem<T>(this PlayerLoopSystem system)
-            where T : unmanaged
-        {
-            PlayerLoopUtils.RemoveSystem<T>(system);
-        }
-
         public static bool InsertSystem(in this PlayerLoopSystem system, PlayerLoopType type, int index = -1)
         {
             return type switch

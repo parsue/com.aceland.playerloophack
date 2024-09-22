@@ -7,7 +7,7 @@ using UnityEngine.LowLevel;
 
 namespace AceLand.PlayerLoopHack
 {
-    public static class PlayerLoopUtils
+    internal static class PlayerLoopUtils
     {
         private static AceLandPlayerLoopSettings Settings => PlayerLoopHelper.Settings;
         private static bool PrintLogging() => Settings.PrintLogging();
