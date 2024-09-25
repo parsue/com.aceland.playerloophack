@@ -10,6 +10,9 @@ namespace AceLand.PlayerLoopHack.Editor.ProjectSettingsProvider
         public const string SETTINGS_NAME = "Project/AceLand Player Loop Hack";
         private SerializedObject _settings;
         
+        [InitializeOnLoadMethod]
+        public static void CreateSettings() => AceLandPlayerLoopSettings.GetSerializedSettings();
+        
         private PlayerLoopSettingsProvider(string path, SettingsScope scope = SettingsScope.User) 
             : base(path, scope) { }
         
