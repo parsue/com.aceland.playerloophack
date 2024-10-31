@@ -5,11 +5,17 @@ using AceLand.PlayerLoopHack.ProjectSetting;
 using UnityEngine;
 using UnityEngine.LowLevel;
 
-namespace AceLand.PlayerLoopHack
+namespace AceLand.PlayerLoopHack.Core
 {
     internal static class PlayerLoopUtils
     {
-        private static AceLandPlayerLoopSettings Settings => PlayerLoopHelper.Settings;
+        public static AceLandPlayerLoopSettings Settings
+        {
+            get => _settings ?? Resources.Load<AceLandPlayerLoopSettings>(nameof(AceLandPlayerLoopSettings));
+            internal set => _settings = value;
+        }
+        
+        private static AceLandPlayerLoopSettings _settings;
         private static bool PrintLogging() => Settings.PrintLogging();
         
         public static void PrintPlayerLoop()
@@ -61,13 +67,13 @@ namespace AceLand.PlayerLoopHack
             {
                 PlayerLoop.SetPlayerLoop(currentPlayerLoop);
                 if (!PrintLogging()) return true;
-                Debug.Log($"Insert System: {systemName}");
+                Debug.Log($"Insert System: {systemName} ({typeof(T).Name})");
                 PrintPlayerLoop();
                 return true;
             }
             
             if (!PrintLogging()) return false;
-            Debug.LogWarning($"Insert System Fail: {systemName}");
+            Debug.LogWarning($"Insert System Fail: {systemName} ({typeof(T).Name})");
             return false;
         }
 
@@ -79,7 +85,7 @@ namespace AceLand.PlayerLoopHack
             PlayerLoop.SetPlayerLoop(currentPlayerLoop);
             if (!PrintLogging()) return;
             
-            Debug.Log($"Remove System: {systemName}");
+            Debug.Log($"Remove System: {systemName} ({typeof(T).Name})");
             PrintPlayerLoop();
         }
         
