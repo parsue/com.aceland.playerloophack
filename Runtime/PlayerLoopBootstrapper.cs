@@ -1,5 +1,4 @@
 using AceLand.PlayerLoopHack.Core;
-using AceLand.PlayerLoopHack.ProjectSetting;
 using UnityEngine;
 using UnityEngine.LowLevel;
 
@@ -12,10 +11,8 @@ namespace AceLand.PlayerLoopHack
         [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.AfterAssembliesLoaded)]
         internal static void Initialize()
         {
-            PlayerLoopHelper.Settings = Resources.Load<AceLandPlayerLoopSettings>(nameof(AceLandPlayerLoopSettings));
-            
             var currentPlayerLoop = PlayerLoop.GetCurrentPlayerLoop();
-            PlayerLoopUtils.PrintPlayerLoop((currentPlayerLoop));
+            PlayerLoopUtils.PrintPlayerLoopSystem(currentPlayerLoop);
         }
     }
 }

@@ -8,10 +8,10 @@ namespace AceLand.PlayerLoopHack.ProjectSetting
     {
         [Header("Logging")]
         [SerializeField] private BuildLevel loggingLevel = BuildLevel.DevelopmentBuild;
+
+        [SerializeField] private BuildLevel systemLoggingAfterChangeLevel = BuildLevel.DevelopmentBuild;
         
-        public bool PrintLogging()
-        {
-            return loggingLevel.IsAcceptedLevel();
-        }
+        public bool PrintLogging => loggingLevel.IsAcceptedLevel();
+        public bool SystemLogging => systemLoggingAfterChangeLevel.IsAcceptedLevel();
     }
 }

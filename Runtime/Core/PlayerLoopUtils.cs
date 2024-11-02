@@ -9,18 +9,22 @@ namespace AceLand.PlayerLoopHack.Core
 {
     internal static class PlayerLoopUtils
     {
-        public static AceLandPlayerLoopSettings Settings
+        private static AceLandPlayerLoopSettings Settings
         {
-            get => _settings ?? Resources.Load<AceLandPlayerLoopSettings>(nameof(AceLandPlayerLoopSettings));
-            internal set => _settings = value;
+            get
+            {
+                _settings ??= Resources.Load<AceLandPlayerLoopSettings>(nameof(AceLandPlayerLoopSettings));
+                return _settings;
+            }
         }
         
         private static AceLandPlayerLoopSettings _settings;
-        private static bool PrintLogging() => Settings.PrintLogging();
+        private static bool PrintLogging => Settings.PrintLogging;
+        private static bool SystemLogging => Settings.SystemLogging;
         
-        public static void PrintPlayerLoop()
+        public static void PrintPlayerLoopSystem()
         {
-            if (!PrintLogging()) return;
+            if (!SystemLogging) return;
 
             var loop = PlayerLoop.GetCurrentPlayerLoop();
             var sb = new StringBuilder();
@@ -32,9 +36,9 @@ namespace AceLand.PlayerLoopHack.Core
             Debug.Log(sb.ToString());
         }
         
-        public static void PrintPlayerLoop(PlayerLoopSystem loop)
+        public static void PrintPlayerLoopSystem(PlayerLoopSystem loop)
         {
-            if (!PrintLogging()) return;
+            if (!SystemLogging) return;
             
             var sb = new StringBuilder();
             sb.AppendLine("Unity Player Loop");
@@ -66,13 +70,13 @@ namespace AceLand.PlayerLoopHack.Core
             if (InsertSystemHandle<T>(ref currentPlayerLoop, in systemToInsert, index))
             {
                 PlayerLoop.SetPlayerLoop(currentPlayerLoop);
-                if (!PrintLogging()) return true;
+                if (!PrintLogging) return true;
                 Debug.Log($"Insert System: {systemName} ({typeof(T).Name})");
-                PrintPlayerLoop();
+                PrintPlayerLoopSystem();
                 return true;
             }
             
-            if (!PrintLogging()) return false;
+            if (!PrintLogging) return false;
             Debug.LogWarning($"Insert System Fail: {systemName} ({typeof(T).Name})");
             return false;
         }
@@ -83,10 +87,10 @@ namespace AceLand.PlayerLoopHack.Core
             var systemName = systemToRemove.updateDelegate.GetOwnerName();
             RemoveSystemHandle<T>(ref currentPlayerLoop, in systemToRemove);
             PlayerLoop.SetPlayerLoop(currentPlayerLoop);
-            if (!PrintLogging()) return;
+            if (!PrintLogging) return;
             
             Debug.Log($"Remove System: {systemName} ({typeof(T).Name})");
-            PrintPlayerLoop();
+            PrintPlayerLoopSystem();
         }
         
         private static void PrintSubsystem(PlayerLoopSystem system, StringBuilder sb, int level)
