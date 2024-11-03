@@ -6,8 +6,6 @@ namespace AceLand.PlayerLoopHack
 {
     internal static class PlayerLoopBootstrapper
     {
-        private static PlayerLoopSystem _fakeLoop;
-        
         [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.AfterAssembliesLoaded)]
         internal static void Initialize()
         {
