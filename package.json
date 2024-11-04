@@ -1,13 +1,18 @@
 {
   "name": "com.aceland.playerloophack",
-  "displayName": "AceLand Player Loop Hack",
   "version": "1.0.0",
+  "displayName": "AceLand Player Loop Hack",
+  "description": "AceLand Player Loop Hack is a tool that supporting a easy and safe method to inject and remove system to Unity low-level Player Loop.  Most AceLand Package is relying on this package.",
+  "unity": "2022.3",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/parsue/com.aceland.playerloophack.git"
+  },
   "author": {
     "name": "Parsue - AceLand Workshop",
+    "email": "parsue@gmail.com",
     "url": "http://www.parsue.io/"
   },
-  "unity": "2022.3",
-  "description": "AceLand Player Loop Hack is a local supporting services dependency",
   "keywords": [
     "aceland",
     "playerloop"
@@ -15,5 +20,9 @@
   "dependencies": {
     "com.aceland.library": "1.0.0"
   },
-  "documentationUrl": ""
+  "publishConfig": {
+    "registry": "https://package.openupm.com"
+  },
+  "documentationUrl": "",
+  "type": "utility"
 }
