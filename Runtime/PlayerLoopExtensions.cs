@@ -13,52 +13,52 @@ namespace AceLand.PlayerLoopHack
             return PlayerLoopUtils.CreatePlayerLoopSystem(system);
         }
 
-        public static bool InsertSystem(in this PlayerLoopSystem system, PlayerLoopType type, int index = -1)
+        public static bool InjectSystem(in this PlayerLoopSystem system, PlayerLoopState state, int index = -1)
         {
-            return type switch
+            return state switch
             {
-                PlayerLoopType.TimeUpdate => PlayerLoopUtils.InsertSystem<TimeUpdate>(in system, index),
-                PlayerLoopType.Initialization => PlayerLoopUtils.InsertSystem<Initialization>(in system, index),
-                PlayerLoopType.EarlyUpdate => PlayerLoopUtils.InsertSystem<EarlyUpdate>(in system, index),
-                PlayerLoopType.FixedUpdate => PlayerLoopUtils.InsertSystem<FixedUpdate>(in system, index),
-                PlayerLoopType.PreUpdate => PlayerLoopUtils.InsertSystem<PreUpdate>(in system, index),
-                PlayerLoopType.Update => PlayerLoopUtils.InsertSystem<Update>(in system, index),
-                PlayerLoopType.PreLateUpdate => PlayerLoopUtils.InsertSystem<PreLateUpdate>(in system, index),
-                PlayerLoopType.PostLateUpdate => PlayerLoopUtils.InsertSystem<PostLateUpdate>(in system, index),
-                _ => throw new ArgumentOutOfRangeException(nameof(type), type, null)
+                PlayerLoopState.TimeUpdate => PlayerLoopUtils.InjectSystem<TimeUpdate>(in system, index),
+                PlayerLoopState.Initialization => PlayerLoopUtils.InjectSystem<Initialization>(in system, index),
+                PlayerLoopState.EarlyUpdate => PlayerLoopUtils.InjectSystem<EarlyUpdate>(in system, index),
+                PlayerLoopState.FixedUpdate => PlayerLoopUtils.InjectSystem<FixedUpdate>(in system, index),
+                PlayerLoopState.PreUpdate => PlayerLoopUtils.InjectSystem<PreUpdate>(in system, index),
+                PlayerLoopState.Update => PlayerLoopUtils.InjectSystem<Update>(in system, index),
+                PlayerLoopState.PreLateUpdate => PlayerLoopUtils.InjectSystem<PreLateUpdate>(in system, index),
+                PlayerLoopState.PostLateUpdate => PlayerLoopUtils.InjectSystem<PostLateUpdate>(in system, index),
+                _ => throw new ArgumentOutOfRangeException(nameof(state), state, null)
             };
         }
 
-        public static void RemoveSystem(this PlayerLoopSystem system, PlayerLoopType type)
+        public static void RemoveSystem(this PlayerLoopSystem system, PlayerLoopState state)
         {
-            switch (type)
+            switch (state)
             {
-                case PlayerLoopType.TimeUpdate:
+                case PlayerLoopState.TimeUpdate:
                     PlayerLoopUtils.RemoveSystem<TimeUpdate>(system);
                     break;
-                case PlayerLoopType.Initialization:
+                case PlayerLoopState.Initialization:
                     PlayerLoopUtils.RemoveSystem<Initialization>(system);
                     break;
-                case PlayerLoopType.EarlyUpdate:
+                case PlayerLoopState.EarlyUpdate:
                     PlayerLoopUtils.RemoveSystem<EarlyUpdate>(system);
                     break;
-                case PlayerLoopType.FixedUpdate:
+                case PlayerLoopState.FixedUpdate:
                     PlayerLoopUtils.RemoveSystem<FixedUpdate>(system);
                     break;
-                case PlayerLoopType.PreUpdate:
+                case PlayerLoopState.PreUpdate:
                     PlayerLoopUtils.RemoveSystem<PreUpdate>(system);
                     break;
-                case PlayerLoopType.Update:
+                case PlayerLoopState.Update:
                     PlayerLoopUtils.RemoveSystem<Update>(system);
                     break;
-                case PlayerLoopType.PreLateUpdate:
+                case PlayerLoopState.PreLateUpdate:
                     PlayerLoopUtils.RemoveSystem<PreLateUpdate>(system);
                     break;
-                case PlayerLoopType.PostLateUpdate:
+                case PlayerLoopState.PostLateUpdate:
                     PlayerLoopUtils.RemoveSystem<PostLateUpdate>(system);
                     break;
                 default:
-                    throw new ArgumentOutOfRangeException(nameof(type), type, null);
+                    throw new ArgumentOutOfRangeException(nameof(state), state, null);
             }
         }
     }

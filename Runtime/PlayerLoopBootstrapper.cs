@@ -1,6 +1,5 @@
 using AceLand.PlayerLoopHack.Core;
 using UnityEngine;
-using UnityEngine.LowLevel;
 
 namespace AceLand.PlayerLoopHack
 {
@@ -9,8 +8,8 @@ namespace AceLand.PlayerLoopHack
         [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.AfterAssembliesLoaded)]
         internal static void Initialize()
         {
-            var currentPlayerLoop = PlayerLoop.GetCurrentPlayerLoop();
-            PlayerLoopUtils.PrintPlayerLoopSystem(currentPlayerLoop);
+            if (PlayerLoopUtils.Settings.SystemLogging)
+                PlayerLoopUtils.PrintPlayerLoopSystem();
         }
     }
 }

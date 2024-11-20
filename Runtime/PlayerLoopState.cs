@@ -1,6 +1,6 @@
 ﻿namespace AceLand.PlayerLoopHack
 {
-    public enum PlayerLoopType
+    public enum PlayerLoopState
     {
         TimeUpdate,
         Initialization,

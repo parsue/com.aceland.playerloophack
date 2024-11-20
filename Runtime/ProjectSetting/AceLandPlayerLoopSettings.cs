@@ -7,11 +7,11 @@ namespace AceLand.PlayerLoopHack.ProjectSetting
     public class AceLandPlayerLoopSettings : ProjectSettings<AceLandPlayerLoopSettings>
     {
         [Header("Logging")]
-        [SerializeField] private BuildLevel loggingLevel = BuildLevel.DevelopmentBuild;
+        [SerializeField] private BuildLevel loggingLevel = BuildLevel.Development;
 
-        [SerializeField] private BuildLevel systemLoggingAfterChangeLevel = BuildLevel.DevelopmentBuild;
+        [SerializeField] private BuildLevel systemLoggingLevel = BuildLevel.Development;
         
         public bool PrintLogging => loggingLevel.IsAcceptedLevel();
-        public bool SystemLogging => systemLoggingAfterChangeLevel.IsAcceptedLevel();
+        public bool SystemLogging => systemLoggingLevel.IsAcceptedLevel();
     }
 }
