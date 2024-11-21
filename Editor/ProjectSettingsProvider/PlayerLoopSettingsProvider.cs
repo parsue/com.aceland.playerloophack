@@ -1,14 +1,13 @@
-﻿using AceLand.Library.Editor;
+﻿using AceLand.Library.Editor.Providers;
 using AceLand.PlayerLoopHack.ProjectSetting;
 using UnityEditor;
 using UnityEngine.UIElements;
 
 namespace AceLand.PlayerLoopHack.Editor.ProjectSettingsProvider
 {
-    public class PlayerLoopSettingsProvider : SettingsProvider
+    public class PlayerLoopSettingsProvider : AceLandSettingsProvider
     {
         public const string SETTINGS_NAME = "Project/AceLand Player Loop Hack";
-        private SerializedObject _settings;
         
         [InitializeOnLoadMethod]
         public static void CreateSettings() => AceLandPlayerLoopSettings.GetSerializedSettings();
@@ -18,7 +17,7 @@ namespace AceLand.PlayerLoopHack.Editor.ProjectSettingsProvider
         
         public override void OnActivate(string searchContext, VisualElement rootElement)
         {
-            _settings = AceLandPlayerLoopSettings.GetSerializedSettings();
+            Settings = AceLandPlayerLoopSettings.GetSerializedSettings();
         }
 
         [SettingsProvider]
@@ -26,11 +25,6 @@ namespace AceLand.PlayerLoopHack.Editor.ProjectSettingsProvider
         {
             var provider = new PlayerLoopSettingsProvider(SETTINGS_NAME, SettingsScope.Project);
             return provider;
-        }
-
-        public override void OnGUI(string searchContext)
-        {
-            EditorHelper.DrawAllProperties(_settings);
         }
     }
 }
