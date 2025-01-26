@@ -7,7 +7,7 @@ namespace AceLand.PlayerLoopHack.Editor.ProjectSettingsProvider
 {
     public class PlayerLoopSettingsProvider : AceLandSettingsProvider
     {
-        public const string SETTINGS_NAME = "Project/AceLand Player Loop Hack";
+        public const string SETTINGS_NAME = "Project/AceLand Packages/Player Loop Hack";
         
         [InitializeOnLoadMethod]
         public static void CreateSettings() => AceLandPlayerLoopSettings.GetSerializedSettings();
